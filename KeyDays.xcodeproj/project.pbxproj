@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9DFDCAF9299CD31E004BD024 /* KeyDaysApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDCAF8299CD31E004BD024 /* KeyDaysApp.swift */; };
-		9DFDCAFB299CD31E004BD024 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDCAFA299CD31E004BD024 /* ContentView.swift */; };
+		9D6B088C29A0092B002281B3 /* KeyDaysApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDCAF8299CD31E004BD024 /* KeyDaysApp.swift */; };
+		9D6B088D29A0092B002281B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDCAFA299CD31E004BD024 /* ContentView.swift */; };
+		9D6B088E29A0092B002281B3 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDCB01299CD31E004BD024 /* PersistenceController.swift */; };
+		9D6B088F29A0092B002281B3 /* AddKeyDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDCB0D299D8B3A004BD024 /* AddKeyDateView.swift */; };
+		9D6B089029A0092B002281B3 /* KeyDaysModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDCB03299CD31F004BD024 /* KeyDaysModel.xcdatamodeld */; };
 		9DFDCAFD299CD31E004BD024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DFDCAFC299CD31E004BD024 /* Assets.xcassets */; };
 		9DFDCB00299CD31E004BD024 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DFDCAFF299CD31E004BD024 /* Preview Assets.xcassets */; };
-		9DFDCB02299CD31E004BD024 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDCB01299CD31E004BD024 /* Persistence.swift */; };
-		9DFDCB05299CD31F004BD024 /* KeyDays.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDCB03299CD31F004BD024 /* KeyDays.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,8 +22,9 @@
 		9DFDCAFA299CD31E004BD024 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9DFDCAFC299CD31E004BD024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DFDCAFF299CD31E004BD024 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		9DFDCB01299CD31E004BD024 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		9DFDCB01299CD31E004BD024 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		9DFDCB04299CD31F004BD024 /* KeyDays.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KeyDays.xcdatamodel; sourceTree = "<group>"; };
+		9DFDCB0D299D8B3A004BD024 /* AddKeyDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKeyDateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +60,9 @@
 				9DFDCAF8299CD31E004BD024 /* KeyDaysApp.swift */,
 				9DFDCAFA299CD31E004BD024 /* ContentView.swift */,
 				9DFDCAFC299CD31E004BD024 /* Assets.xcassets */,
-				9DFDCB01299CD31E004BD024 /* Persistence.swift */,
-				9DFDCB03299CD31F004BD024 /* KeyDays.xcdatamodeld */,
+				9DFDCB01299CD31E004BD024 /* PersistenceController.swift */,
+				9DFDCB0D299D8B3A004BD024 /* AddKeyDateView.swift */,
+				9DFDCB03299CD31F004BD024 /* KeyDaysModel.xcdatamodeld */,
 				9DFDCAFE299CD31E004BD024 /* Preview Content */,
 			);
 			path = KeyDays;
@@ -80,9 +83,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9DFDCB08299CD31F004BD024 /* Build configuration list for PBXNativeTarget "KeyDays" */;
 			buildPhases = (
-				9DFDCAF1299CD31E004BD024 /* Sources */,
 				9DFDCAF2299CD31E004BD024 /* Frameworks */,
 				9DFDCAF3299CD31E004BD024 /* Resources */,
+				9D6B088B29A0091A002281B3 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -139,14 +142,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9DFDCAF1299CD31E004BD024 /* Sources */ = {
+		9D6B088B29A0091A002281B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DFDCB02299CD31E004BD024 /* Persistence.swift in Sources */,
-				9DFDCAFB299CD31E004BD024 /* ContentView.swift in Sources */,
-				9DFDCB05299CD31F004BD024 /* KeyDays.xcdatamodeld in Sources */,
-				9DFDCAF9299CD31E004BD024 /* KeyDaysApp.swift in Sources */,
+				9D6B088C29A0092B002281B3 /* KeyDaysApp.swift in Sources */,
+				9D6B088D29A0092B002281B3 /* ContentView.swift in Sources */,
+				9D6B088E29A0092B002281B3 /* PersistenceController.swift in Sources */,
+				9D6B088F29A0092B002281B3 /* AddKeyDateView.swift in Sources */,
+				9D6B089029A0092B002281B3 /* KeyDaysModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,9 +294,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = sutyrKyrylo.KeyDays;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -319,9 +326,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = sutyrKyrylo.KeyDays;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -349,13 +359,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		9DFDCB03299CD31F004BD024 /* KeyDays.xcdatamodeld */ = {
+		9DFDCB03299CD31F004BD024 /* KeyDaysModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				9DFDCB04299CD31F004BD024 /* KeyDays.xcdatamodel */,
 			);
 			currentVersion = 9DFDCB04299CD31F004BD024 /* KeyDays.xcdatamodel */;
-			path = KeyDays.xcdatamodeld;
+			path = KeyDaysModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -10,63 +10,83 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    
+        
+    @FetchRequest(entity: KeyDay.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \KeyDay.keyDate, ascending: true)],
+                  animation: .default)
+    private var items: FetchedResults<KeyDay>
+    
+    @State private var showingAddView = false
+    
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+        let _ = print(items)
+        NavigationStack {
+            VStack{
+                if items.isEmpty {
+                    Button {
+                        showingAddView.toggle()
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Label("Add Item", systemImage: "plus")
+                    }
+                } else {
+                    ScrollView {
+                        ForEach(items) { item in
+                            
+                            
+                            NavigationLink {
+                                
+                            } label: {
+                                
+                                MyCell(name: item.dateName!, date: item.keyDate!.formatted(), imageData: item.imageData ?? Data())
+                            }
+                        }
+                        .onDelete(perform: deleteItems)
                     }
                 }
-                .onDelete(perform: deleteItems)
+                
             }
+            .navigationTitle("Your Key Days")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button {
+                        showingAddView.toggle()
+                    } label: {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
-            Text("Select an item")
+            .sheet(isPresented: $showingAddView) {
+                AddKeyDateView()
+            }
         }
     }
-
+    
+    
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
+            let newItem = KeyDay(context: viewContext)
+            newItem.keyDate = Date()
+            
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
     }
-
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
-
+            
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
@@ -74,15 +94,86 @@ struct ContentView: View {
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
+            .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }
+
+struct MyCell: View {
+    let name: String
+    let date: String
+    let imageData: Data
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            if let image = UIImage(data: imageData) {
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: 150)
+                    .clipped()
+            } else {
+                Color.gray.frame(height: 150)
+            }
+            
+            HStack {
+                Text(date)
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                
+                Spacer()
+                
+                Text(name)
+                    .font(.headline)
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+        }
+        .background(Color.white)
+        .cornerRadius(10)
+        .padding()
+    }
+}
+
+
+
+//            if items.isEmpty {
+//                Button {
+//                    showingAddView.toggle()
+//                } label: {
+//                    Label("Add Item", systemImage: "plus")
+//                }
+//            } else {
+//                List {
+//                    ForEach(items) { item in
+//
+//                        NavigationLink {
+//
+//                        } label: {
+//                            ZStack{
+//                                if let data = item.imageData, let newImage = UIImage(data: data) {
+//                                    Image(uiImage: newImage)
+//                                        .resizable()
+//
+//
+//                                    Text(item.dateName ?? "no data here")
+//                                } else {
+//                                    // logic with no image
+//                                }
+//                            }
+//                            .scaledToFill()
+//                            .frame(height: 150)
+//                        }
+//
+//                    }
+//                    .onDelete(perform: deleteItems)
+//                }
+//            }
+
+
+
+//                .navigationTitle("Key Days")
+
+
